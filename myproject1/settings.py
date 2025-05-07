@@ -1,3 +1,4 @@
+
 """
 Django settings for myproject1 project.
 
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'myapp',
 ]
 
 MIDDLEWARE = [
@@ -120,3 +122,34 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Путь, куда перенаправлять пользователей, если они не авторизованы
+LOGIN_URL = '/accounts/login/'  # Страница логина
+
+# После успешного логина перенаправление на главную страницу ресторана
+ # Главная страница ресторана (restaurant_home)
+LOGIN_REDIRECT_URL = '/restaurant_home/'
+# После выхода из системы перенаправление на страницу логина
+LOGOUT_REDIRECT_URL = '/accounts/login/'  # Страница логина после выхода
+
+# myproject/settings.py
+import os
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            BASE_DIR / 'templates',  # Путь до общей папки 'templates'
+            
+        ],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'APP_DIRS': True,  # Разрешает искать шаблоны в папках каждого приложения
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]

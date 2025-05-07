@@ -1,0 +1,29 @@
+<!-- templates/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+</head>
+<body>
+    <h1>Welcome, {{ user.username }}!</h1>  <!-- Приветствие с именем пользователя -->
+
+    <h2>Table Booking</h2>
+    <!-- Вставьте форму для бронирования столиков здесь, если нужно -->
+
+    <div>
+        <h3>Your Account</h3>
+        <ul>
+            <li><a href="{% url 'profile' %}">My Profile</a></li>  <!-- Ссылка на страницу профиля -->
+            
+        </ul>
+        <!-- Форма для выхода -->
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Выйти</button>
+        </form>
+    </div>
+</body>
+</html>
+
